@@ -1,0 +1,42 @@
+{
+    users:{};
+    events:[
+        {
+            id:0,
+            nama:"event",
+            biaya:"",
+            tanggal:'',
+            kategori:'',
+            waktu:'',
+            selesai:'',
+            souvernir:[
+                {
+                    id:'',
+                    nama:'',
+                    stok:'',
+                    harga:'',
+                    gambar:'',
+                    deskripsi:''
+                }
+            ],
+            FeatureDonasi:false,
+            donasi:0
+        }
+    ];
+    kategori:[
+        {
+            id:0,
+            nama:''
+        }
+    ];
+    tiket:[
+        {
+            id:0,
+            idEvent:0,
+            sharingKode:true,
+            kodeReferal:'',
+
+        }
+    ]
+
+}
