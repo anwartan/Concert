@@ -1,41 +1,75 @@
 {
-    users:{};
-    events:[
+    users:[
+        {
+            email:'',
+            gender:'',
+            tanggal:'',
+            verified:true,
+            ktp:'',
+            role:'user',
+            kategori:[
+                '','',''
+            ],
+            
+        }
+    ];
+
+    promotor:[
+        {
+            namaPromotor:'',
+            alamatPromotr:'',
+            verified:true,
+
+        }
+    ];
+    acara:[
         {
             id:0,
             nama:"event",
-            biaya:"",
-            tanggal:'',
-            kategori:'',
-            waktu:'',
-            selesai:'',
-            souvernir:[
-                {
-                    id:'',
-                    nama:'',
-                    stok:'',
-                    harga:'',
-                    gambar:'',
-                    deskripsi:''
-                }
+            harga:"",
+            tanggalMulai:'19911111111',
+            tanggalAkhir:'19999111111',
+            kategori:[
+                '','',''
             ],
-            FeatureDonasi:false,
-            donasi:0
+            like:0,
+            unlike:0,
+            penonton:0,
+            pendaftar:0,
+            deskripsi:'',
+            banner:'',
+
         }
+    ];
+    komentar:[
+        'idacara'=[
+            {
+                idkomen:'',
+                iduser:'',
+                pesan:''
+            },
+            {
+                idkomen:'',
+                iduser:'',
+                pesan:''
+            },
+            {
+                idkomen:'',
+                iduser:'',
+                pesan:''
+            },
+        ]
     ];
     kategori:[
         {
-            id:0,
             nama:''
         }
     ];
     tiket:[
         {
             id:0,
-            idEvent:0,
-            sharingKode:true,
-            kodeReferal:'',
-
+            idAcara:0,
+            iduser:0
         }
     ]
 

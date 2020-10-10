@@ -5,6 +5,7 @@
  * @format
  * @flow strict-local
  */
+import { NavigationContainer } from "@react-navigation/native";
 
 import React from 'react';
 import {
@@ -13,6 +14,8 @@ import {
 
   Text, View
 } from 'react-native';
+import { Login } from "./pages";
+import Router from "./router";
 
 
 
@@ -21,19 +24,13 @@ const App= () => {
     <>
       <StatusBar barStyle="dark-content" />
      
-      <View style={styles.container}>
-        <Text>Concert</Text>
-      </View>
+      <NavigationContainer>
+       <Router></Router>
+      </NavigationContainer>
     </>
   );
 };
 
-const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    alignItems:'center',
-    justifyContent:'center'
-  }
-});
+
 
 export default App;

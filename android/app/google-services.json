@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "277237847385",
+    "firebase_url": "https://concert-88b1c.firebaseio.com",
+    "project_id": "concert-88b1c",
+    "storage_bucket": "concert-88b1c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:277237847385:android:de3b8a9b569ba95235e848",
+        "android_client_info": {
+          "package_name": "com.concert"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "277237847385-e8jvihj9okqvmtqbktfr5n48g0liapm7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnB7A0bNFjA7MPfSpIV_ElLpND_duqS3Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "277237847385-e8jvihj9okqvmtqbktfr5n48g0liapm7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
