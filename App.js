@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.lighter,
   },
   engine: {
-    position: 'absolute',
+    position: 'relative',
     right: 0,
   },
   body: {
