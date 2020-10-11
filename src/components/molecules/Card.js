@@ -7,7 +7,7 @@ import { colors, Typography } from "../../utils";
 import { Text } from "../atoms";
 
 const Card = ({
-  date, nama, harga, type, source, onPress,
+  date, nama, harga, type, source, onPress, id,
 }) => {
   if (type === "secondary") {
     return (
@@ -19,27 +19,30 @@ const Card = ({
         <Image source={ILBackground} style={[styles.image]} />
 
         <View style={styles.wrapper}>
-          <Text variant="500" styles={styles.date}>{date}</Text>
           <View style={styles.detail}>
-            <Text
-              variant="600"
-              styles={styles.nama}
-              numberOfLines={1}
-              ellipsizeMode="tail"
-            >
-              {nama}
 
-            </Text>
-            <Text
-              variant="600"
-              numberOfLines={1}
-              ellipsizeMode="tail"
-              styles={styles.harga}
-            >
-              {harga}
+            <Text variant="500" styles={styles.date}>{date}</Text>
+            <Text variant="500" styles={styles.date}>{id}</Text>
 
-            </Text>
           </View>
+          <Text
+            variant="600"
+            styles={styles.nama}
+            numberOfLines={1}
+            ellipsizeMode="tail"
+          >
+            {nama}
+
+          </Text>
+          <Text
+            variant="600"
+            numberOfLines={1}
+            ellipsizeMode="tail"
+            styles={styles.harga}
+          >
+            {harga}
+
+          </Text>
         </View>
       </TouchableOpacity>
     );
@@ -47,7 +50,7 @@ const Card = ({
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={[styles.container, styles.persegi]}
+      style={[styles.container, styles.persegi, { marginRight: 20 }]}
     >
       <Image source={source} style={styles.image} />
       <Image source={ILBackground} style={[styles.image]} />

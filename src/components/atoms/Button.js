@@ -4,12 +4,14 @@ import { Text } from ".";
 import { colors, Typography } from "../../utils";
 
 const Button = ({
-  text, onPress, type, icon,
+  text, onPress, type, icon, disabled,
 }) => {
   if (type === "icon-only") {
     return (
       <TouchableOpacity
         onPress={onPress}
+        disabled={disabled}
+
         style={[styles.button, styles.buttonIconOnly]}
       >
         {icon}
@@ -18,7 +20,11 @@ const Button = ({
   }
   if (type === "icon-detail") {
     return (
-      <TouchableOpacity onPress={onPress} style={styles.button}>
+      <TouchableOpacity
+        disabled={disabled}
+        onPress={onPress}
+        style={styles.button}
+      >
         {icon}
         <Text variant="500" styles={styles.textDetail}>{text}</Text>
       </TouchableOpacity>
@@ -26,6 +32,7 @@ const Button = ({
   }
   return (
     <TouchableOpacity
+      disabled={disabled}
       onPress={onPress}
       style={[styles.button, styles.buttonDefault]}
     >

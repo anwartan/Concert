@@ -8,62 +8,65 @@ import {
 import { Button, Gap, Text } from "../../components/atoms";
 import { colors, Typography } from "../../utils";
 
-const index = () => (
-  <View style={styles.container}>
-    <ImageBackground source={ILGambar} style={styles.wrapper}>
-      <Image style={{ width: "100%", height: "100%" }} source={ILFullBlack} />
-      <View style={styles.detail}>
-        <Button type="icon-only" icon={<ICBackButton fill="#fff" />} />
-        <View style={styles.wrapperDetail}>
+const index = ({ navigation, route }) => {
+  const { data } = route.params;
+  return (
+    <View style={styles.container}>
+      <ImageBackground source={{ uri: data.banner }} style={styles.wrapper}>
+        <Image style={{ width: "100%", height: "100%" }} source={ILFullBlack} />
+        <View style={styles.detail}>
+          <Button type="icon-only" icon={<ICBackButton fill="#fff" />} onPress={() => navigation.goBack()} />
+          <View style={styles.wrapperDetail}>
 
-          <Text styles={styles.title} variant="900">Nama Konser</Text>
-          <Gap height={10} />
-          <View style={{ flexDirection: "row" }}>
+            <Text styles={styles.title} variant="900">{data.nama}</Text>
+            <Gap height={10} />
+            <View style={{ flexDirection: "row" }}>
 
-            <ICCalendar fill="#fff" />
-            <Gap width={10} />
-            <Text styles={styles.text} variant="400">
-              Tgl
-            </Text>
-          </View>
-          <Gap height={10} />
+              <ICCalendar fill="#fff" />
+              <Gap width={10} />
+              <Text styles={styles.text} variant="400">
+                {`${new Date(data.awaldate).toDateString()} - ${new Date(data.awaltime).toLocaleTimeString()}`}
+              </Text>
+            </View>
+            <Gap height={10} />
 
-          <View style={{ flexDirection: "row" }}>
-            <ICTicket width={24} height={24} fill="#fff" />
-            <Gap width={10} />
-            <Text styles={styles.text} variant="400">Biaya</Text>
+            <View style={{ flexDirection: "row" }}>
+              <ICTicket width={24} height={24} fill="#fff" />
+              <Gap width={10} />
+              <Text styles={styles.text} variant="400">{`Rp. ${data.harga}`}</Text>
+            </View>
           </View>
         </View>
-      </View>
-    </ImageBackground>
-    <View style={styles.content}>
-      <View>
+      </ImageBackground>
+      <View style={styles.content}>
+        <View>
 
-        <Text styles={styles.titleSection} variant="600">Detail</Text>
-        <Text
-          styles={styles.contentSection}
-          variant="500"
-        >
-          jfdksajfdlsajfldsaljjfdksjfkdsjakfjdsfjjdsajkfldsjaklfjdlksjaklfjdslkajflkdsjlfjsda
-        </Text>
-      </View>
-
-      <View>
-        <View style={styles.wrapperFeature}>
-          <Text styles={styles.textFeature} variant="600">Price</Text>
+          <Text styles={styles.titleSection} variant="600">Detail</Text>
           <Text
-            styles={[styles.textFeature, styles.price]}
-            variant="600"
+            styles={styles.contentSection}
+            variant="500"
           >
-            Rp. 20.000
-
+            {data.deskripsi}
           </Text>
         </View>
-        <Button text="Buy Ticket" />
+
+        <View>
+          <View style={styles.wrapperFeature}>
+            <Text styles={styles.textFeature} variant="600">Price</Text>
+            <Text
+              styles={[styles.textFeature, styles.price]}
+              variant="600"
+            >
+              {`Rp. ${data.harga}`}
+
+            </Text>
+          </View>
+          <Button text="Buy Ticket" />
+        </View>
       </View>
     </View>
-  </View>
-);
+  );
+};
 
 export default index;
 

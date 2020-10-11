@@ -3,7 +3,7 @@
         {
             email:'',
             gender:'',
-            tanggal:'',
+
             verified:true,
             ktp:'',
             role:'user',

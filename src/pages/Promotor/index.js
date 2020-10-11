@@ -1,33 +1,19 @@
 import React from "react";
-import {
-  Alert, Image, StyleSheet, View,
-} from "react-native";
-import auth from "@react-native-firebase/auth";
-import db from "@react-native-firebase/firestore";
+import { StyleSheet, View, Image } from "react-native";
 import { Gap, Text } from "../../components/atoms";
+import { Header } from "../../components/molecules";
 import Item from "../../components/molecules/Item";
 import { colors, Typography, useStateValue } from "../../utils";
 
 const index = ({ navigation }) => {
-  const [{ user }, dispatch] = useStateValue();
-  const signOut = () => {
-    auth().signOut();
-    dispatch({ type: "REMOVE_USER" });
-  };
-  const promotor = () => {
-    db().collection("promotor").doc(user?.uid).get()
-      .then((data) => {
-        if (data.data().verified === false) {
-          Alert.alert("Information", "Waiting verify from administrator");
-        } else if (data.data().verified === true) {
-          navigation.navigate("Promotor");
-        } else {
-          navigation.navigate("VerifyPromotor");
-        }
-      });
-  };
+  const [{ user }] = useStateValue();
   return (
     <View>
+      <Header
+        title="Promoto Account"
+        type="with-backButton"
+        onBackPress={() => navigation.goBack()}
+      />
       <View style={styles.header}>
         <Image style={styles.image} source={{ uri: user?.gambar }} />
         <Gap width={20} />
@@ -38,23 +24,16 @@ const index = ({ navigation }) => {
 
         </View>
       </View>
-      <View style={styles.wrapper}>
+      <View>
         <Item
-          title="Edit Account"
-          onPress={() => navigation.navigate("EditAccount")}
+          title="My Concert"
+          onPress={() => navigation.navigate("MyConcert")}
         />
         <Item
-          title="Promotor Account"
-          onPress={promotor}
+          title="Add Concert"
+          onPress={() => navigation.navigate("AddConcert")}
         />
-        <Item
-          title="My History"
-          onPress={() => navigation.navigate("MyHistory")}
-        />
-        <Item
-          title="Sign Out"
-          onPress={signOut}
-        />
+        {/* <Item title="Edit Promotor" /> */}
 
       </View>
     </View>
