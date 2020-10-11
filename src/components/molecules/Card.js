@@ -7,7 +7,7 @@ import { colors, Typography } from "../../utils";
 import { Text } from "../atoms";
 
 const Card = ({
-  date, nama, harga, type, source, onPress, id,
+  date, nama, harga, type, source, onPress, id, status,
 }) => {
   if (type === "secondary") {
     return (
@@ -43,6 +43,33 @@ const Card = ({
             {harga}
 
           </Text>
+        </View>
+      </TouchableOpacity>
+    );
+  }
+  if (type === "ticket") {
+    return (
+      <TouchableOpacity
+        onPress={onPress}
+        style={[styles.container, styles.full, { backgroundColor: colors.header.primary, height: 100 }]}
+      >
+
+        <View style={styles.wrapper}>
+          <View style={styles.detail}>
+            <Text variant="300" styles={styles.date}>{id}</Text>
+            <Text variant="300" styles={styles.date}>{status}</Text>
+          </View>
+          <Text
+            variant="900"
+            styles={styles.nama}
+            numberOfLines={1}
+            ellipsizeMode="tail"
+          >
+            {nama}
+
+          </Text>
+          <Text variant="500" styles={styles.date}>{date}</Text>
+
         </View>
       </TouchableOpacity>
     );

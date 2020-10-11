@@ -8,7 +8,7 @@ import { ICHome, ICPerson, ICTicket } from "../assets";
 import {
   Account,
   Concert, EditAccount, Home, Login, Register, Ticket,
-  History, Promotor, MyConcert, AddConcert, EditPromotor, Kategori, VerifyPromotor, VerifyAkun,
+  History, Promotor, MyConcert, AddConcert, EditPromotor, Kategori, VerifyPromotor, VerifyAkun, Payment, TicketView,
 } from "../pages";
 import { colors, fonts } from "../utils";
 import { useStateValue } from "../utils/useStateProvider";
@@ -100,7 +100,8 @@ const Router = () => {
             <Stack.Screen name="AddConcert" component={AddConcert} />
             <Stack.Screen name="EditPromotor" component={EditPromotor} />
             <Stack.Screen name="VerifyAkun" component={VerifyAkun} />
-
+            <Stack.Screen name="Payment" component={Payment} />
+            <Stack.Screen name="TicketView" component={TicketView} />
           </>
         )
       }

@@ -1,40 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Image, ImageBackground, StyleSheet, View,
 } from "react-native";
+import { useEffect } from "react/cjs/react.development";
+import db from "@react-native-firebase/firestore";
 import {
-  ICBackButton, ICCalendar, ICTicket, ILBackground, ILFullBlack, ILGambar,
+  ICBackButton, ICCalendar, ICTicket, ILFullBlack,
 } from "../../assets";
 import { Button, Gap, Text } from "../../components/atoms";
 import { colors, Typography } from "../../utils";
 
 const index = ({ navigation, route }) => {
   const { data } = route.params;
+  const [acara, setAcara] = useState({});
+  useEffect(() => {
+    db().collection("acara").doc(data.idAcara).get()
+      .then((res) => {
+        setAcara({
+          id: res.id,
+          ...res.data(),
+        });
+      });
+  }, []);
   return (
     <View style={styles.container}>
-      <ImageBackground source={{ uri: data.banner }} style={styles.wrapper}>
+      <ImageBackground source={{ uri: acara.banner }} style={styles.wrapper}>
         <Image style={{ width: "100%", height: "100%" }} source={ILFullBlack} />
         <View style={styles.detail}>
           <Button type="icon-only" icon={<ICBackButton fill="#fff" />} onPress={() => navigation.goBack()} />
           <View style={styles.wrapperDetail}>
 
-            <Text styles={styles.title} variant="900">{data.nama}</Text>
+            <Text styles={styles.title} variant="900">{acara.nama}</Text>
             <Gap height={10} />
             <View style={{ flexDirection: "row" }}>
 
               <ICCalendar fill="#fff" />
               <Gap width={10} />
               <Text styles={styles.text} variant="400">
-                {`${new Date(data.awaldate).toDateString()} - ${new Date(data.awaltime).toLocaleTimeString()}`}
+                {`Start :${new Date(acara.awaldate).toDateString()} - ${new Date(acara.awaltime).toLocaleTimeString()}`}
+              </Text>
+            </View>
+            <Gap height={10} />
+            <View style={{ flexDirection: "row" }}>
+
+              <ICCalendar fill="#fff" />
+              <Gap width={10} />
+              <Text styles={styles.text} variant="400">
+                {`End : ${new Date(acara.akhirdate).toDateString()} - ${new Date(acara.akhirtime).toLocaleTimeString()}`}
               </Text>
             </View>
             <Gap height={10} />
 
-            <View style={{ flexDirection: "row" }}>
+            {/* <View style={{ flexDirection: "row" }}>
               <ICTicket width={24} height={24} fill="#fff" />
               <Gap width={10} />
-              <Text styles={styles.text} variant="400">{`Rp. ${data.harga}`}</Text>
-            </View>
+              <Text styles={styles.text} variant="400">{`Rp. ${acara.harga}`}</Text>
+            </View> */}
           </View>
         </View>
       </ImageBackground>
@@ -46,24 +67,24 @@ const index = ({ navigation, route }) => {
             styles={styles.contentSection}
             variant="500"
           >
-            {data.deskripsi}
+            {acara.deskripsi}
           </Text>
         </View>
 
         <View>
-          <View style={styles.wrapperFeature}>
+          {/* <View style={styles.wrapperFeature}>
             <Text styles={styles.textFeature} variant="600">Price</Text>
             <Text
               styles={[styles.textFeature, styles.price]}
               variant="600"
             >
-              {`Rp. ${data.harga}`}
+              {`Rp. ${acara.harga}`}
 
             </Text>
-          </View>
+          </View> */}
           <Button
-            text="Buy Ticket"
-            onPress={() => navigation.navigate("Payment", { data })}
+            text="Watch Now"
+            onPress={() => navigation.navigate("Payment", { acara })}
           />
         </View>
       </View>

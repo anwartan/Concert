@@ -24,14 +24,7 @@ const index = ({ navigation }) => {
     akhirdate: "",
     akhirtime: "",
   });
-  const [start, setStart] = useState({
-    awaldate: "",
-    awaltime: "",
-  });
-  const [end, setEnd] = useState({
-    akhirdate: "",
-    akhirtime: "",
-  });
+
   const [kategori, setKategori] = useState([]);
   const setState = (val, field) => {
     setData({ ...data, [field]: val });

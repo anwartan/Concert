@@ -30,7 +30,7 @@ const index = ({ navigation }) => {
     db().collection("user").doc(user?.uid).get()
       .then((res) => {
         console.log(res.data());
-        if (res.data().ktp) {
+        if (res.data().ktp && res.data().verified === false) {
           Alert.alert("Information", "Waiting from Administrator");
         } else if (res.data().verified) {
           Alert.alert("Information", "Account was verified");
@@ -99,10 +99,10 @@ const index = ({ navigation }) => {
 
         <Input
           type="picker"
-          text="Choose Genre"
-          selectedValue={data.genre}
+          text="Choose Gender"
+          selectedValue={data.gender}
           item={[{ nama: "Laki-laki" }, { nama: "Perempuan" }]}
-          onChange={(val) => onChange(val, "genre")}
+          onChange={(val) => onChange(val, "gender")}
         />
         <Gap height={20} />
         <Button text="Save" onPress={save} />
