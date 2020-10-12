@@ -18,7 +18,7 @@ const index = ({ navigation, route }) => {
   const [pesanan, setPesanan] = useState({
     idAcara: data.id,
     idUser: user.uid,
-    namaAcara: data.nama,
+    nama: data.nama,
     awaldate: data.awaldate,
     awaltime: data.awaltime,
     buktiPembayaran: "",

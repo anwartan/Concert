@@ -87,16 +87,13 @@ const Router = () => {
           </>
         ) : (
           <>
-            {user.kategori === ""
-            && <Stack.Screen name="Kategori" component={Kategori} />}
-
             <Stack.Screen name="Home" component={MainApp} />
+            <Stack.Screen name="Kategori" component={Kategori} />
             <Stack.Screen name="EditAccount" component={EditAccount} />
             <Stack.Screen name="MyHistory" component={History} />
             <Stack.Screen name="Concert" component={Concert} />
             <Stack.Screen name="Promotor" component={Promotor} />
             <Stack.Screen name="VerifyPromotor" component={VerifyPromotor} />
-
             <Stack.Screen name="MyConcert" component={MyConcert} />
             <Stack.Screen name="AddConcert" component={AddConcert} />
             <Stack.Screen name="EditPromotor" component={EditPromotor} />

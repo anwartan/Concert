@@ -7,6 +7,7 @@ import db from "@react-native-firebase/firestore";
 import { Gap, Text } from "../../components/atoms";
 import Item from "../../components/molecules/Item";
 import { colors, Typography, useStateValue } from "../../utils";
+import { ILGambar } from "../../assets";
 
 const index = ({ navigation }) => {
   const [{ user }, dispatch] = useStateValue();
@@ -17,20 +18,21 @@ const index = ({ navigation }) => {
   const promotor = () => {
     db().collection("promotor").doc(user?.uid).get()
       .then((data) => {
-        // if (data.data().verified === false) {
-        //   Alert.alert("Information", "Waiting verify from administrator");
-        // } else if (data.data().verified === true) {
-        //   navigation.navigate("Promotor");
-        // } else {
-        //   navigation.navigate("VerifyPromotor");
-        // }
-        navigation.navigate("Promotor");
+        if (data.exists) {
+          if (data.data().verified === false) {
+            Alert.alert("Information", "Waiting verify from administrator");
+          } else if (data.data().verified === true) {
+            navigation.navigate("Promotor");
+          }
+        } else {
+          navigation.navigate("VerifyPromotor");
+        }
       });
   };
   return (
     <View>
       <View style={styles.header}>
-        <Image style={styles.image} source={{ uri: user?.gambar }} />
+        <Image style={styles.image} source={user?.gambar !== "" ? { uri: user?.gambar } : ILGambar} />
         <Gap width={20} />
         <View>
           <Text styles={styles.nama} variant="900">{user?.nama}</Text>

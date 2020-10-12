@@ -5,10 +5,17 @@ import db from "@react-native-firebase/firestore";
 import { ILGambar } from "../../assets";
 import { Gap, Text } from "../../components/atoms";
 import { Card, Header } from "../../components/molecules";
-import { colors, Typography } from "../../utils";
+import { colors, Typography, useStateValue } from "../../utils";
 
 const index = ({ navigation }) => {
+  const [{ user }] = useStateValue();
+
   const [data, setData] = useState([]);
+  useEffect(() => {
+    if (user?.kategori === "") {
+      navigation.navigate("Kategori");
+    }
+  }, []);
   useEffect(() => {
     const fetch = db().collection("acara").onSnapshot((res) => {
       const temp = [];

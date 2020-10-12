@@ -1,54 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Image, StyleSheet, TouchableOpacity, View,
 } from "react-native";
+import db from "@react-native-firebase/firestore";
 import { ILBackground } from "../../assets";
 import { colors, Typography } from "../../utils";
 import { Gap, Text } from "../atoms";
 
 const ItemConcert = ({
   tanggal, nama, kode, harga, terjual, penonton, onPress, source,
-}) => (
-  <View>
-    <View style={styles.header}>
-      <Image source={source} style={styles.image} />
-      <Image source={ILBackground} style={styles.image} />
-    </View>
-    <View style={styles.content}>
-      <View style={styles.section}>
-        <Text variant="500">{tanggal}</Text>
-        <Text variant="500">{kode}</Text>
-
+}) => {
+  const [jumlah, setJumlah] = useState(0);
+  useEffect(() => {
+    const fetch = db().collection("tiket").where("idAcara", "==", kode).get()
+      .then((res) => {
+        setJumlah(res.size);
+      });
+  }, []);
+  return (
+    <View>
+      <View style={styles.header}>
+        <Image source={source} style={styles.image} />
+        <Image source={ILBackground} style={styles.image} />
       </View>
-      <View style={styles.section}>
-        <Text styles={styles.point} variant="600">{nama}</Text>
-        <Text styles={styles.point} variant="600">{harga}</Text>
-
-      </View>
-      <Gap height={10} />
-      <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-
-        <View>
-          <Text variant="400">
-            Terjual :
-            {" "}
-            {terjual}
-          </Text>
-          <Text variant="400">
-            Penonton :
-            {" "}
-            {penonton}
-          </Text>
+      <View style={styles.content}>
+        <View style={styles.section}>
+          <Text variant="500">{tanggal}</Text>
+          <Text variant="500">{kode}</Text>
 
         </View>
-        <TouchableOpacity style={styles.edit} onPress={onPress}>
-          <Text variant="500" styles={{ color: colors.text.secondary }}>Edit</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+        <View style={styles.section}>
+          <Text styles={styles.point} variant="600">{nama}</Text>
+          <Text styles={styles.point} variant="600">{harga}</Text>
 
-  </View>
-);
+        </View>
+        <Gap height={10} />
+        <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+
+          <View>
+            <Text variant="400">
+              Terjual :
+              {" "}
+              {jumlah}
+            </Text>
+            <Text variant="400">
+              Penonton :
+              {" "}
+              {penonton}
+            </Text>
+
+          </View>
+          <TouchableOpacity style={styles.edit} onPress={onPress}>
+            <Text variant="500" styles={{ color: colors.text.secondary }}>Stream</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
+    </View>
+  );
+};
 
 export default ItemConcert;
 

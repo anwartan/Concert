@@ -65,7 +65,7 @@ const index = ({ navigation }) => {
 
   const send = () => {
     if (data.ktp && gambar1) {
-      db().collection("user").doc(user?.uid).update({ ktp: data.ktp, gambar: gambar1 })
+      db().collection("user").doc(user?.uid).update({ ktp: data.ktp, gambarktp: gambar1 })
         .then((res) => {
           Alert.alert("Information", "Successfull");
           navigation.goBack();

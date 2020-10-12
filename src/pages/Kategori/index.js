@@ -11,7 +11,7 @@ import { colors, useStateValue } from "../../utils";
 
 const index = ({ navigation }) => {
   const [data, setData] = useState([]);
-  const [{ user }] = useStateValue();
+  const [{ user }, dispatch] = useStateValue();
   useEffect(() => {
     db().collection("kategori").get().then((doc) => {
       const temp = [];
@@ -26,6 +26,8 @@ const index = ({ navigation }) => {
   }, []);
   const set = (kategori) => {
     db().collection("user").doc(user.uid).update({ kategori });
+    const tmp = { ...user, kategori };
+    dispatch({ type: "UPDATE_USER", user: tmp });
     navigation.replace("Home");
   };
   return (
