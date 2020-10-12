@@ -16,6 +16,7 @@ import VerifyPromotor from "./VerifyPromotor";
 import VerifyAkun from "./VerifyAkun";
 import Payment from "./Payment";
 import TicketView from "./TicketView";
+import Stream from "./Stream";
 
 export {
   Login, Concert, EditAccount, History, Register, Splash, Ticket,
@@ -23,5 +24,5 @@ export {
   MyConcert, AddConcert,
   EditPromotor, Kategori,
   VerifyPromotor, VerifyAkun,
-  Payment, TicketView,
+  Payment, TicketView, Stream,
 };

@@ -17,13 +17,14 @@ const index = ({ navigation }) => {
   const promotor = () => {
     db().collection("promotor").doc(user?.uid).get()
       .then((data) => {
-        if (data.data().verified === false) {
-          Alert.alert("Information", "Waiting verify from administrator");
-        } else if (data.data().verified === true) {
-          navigation.navigate("Promotor");
-        } else {
-          navigation.navigate("VerifyPromotor");
-        }
+        // if (data.data().verified === false) {
+        //   Alert.alert("Information", "Waiting verify from administrator");
+        // } else if (data.data().verified === true) {
+        //   navigation.navigate("Promotor");
+        // } else {
+        //   navigation.navigate("VerifyPromotor");
+        // }
+        navigation.navigate("Promotor");
       });
   };
   return (

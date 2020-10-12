@@ -33,6 +33,11 @@ const index = ({ navigation }) => {
           title="Add Concert"
           onPress={() => navigation.navigate("AddConcert")}
         />
+        <Item
+          title="Stream"
+          onPress={() => navigation.navigate("Stream")}
+        />
+
         {/* <Item title="Edit Promotor" /> */}
 
       </View>
